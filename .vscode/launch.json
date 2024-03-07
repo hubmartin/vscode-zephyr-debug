@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "zephyr NRF52",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "jlink",
+            "cwd": "${workspaceRoot}",
+            "executable": "${config:workspaceFolder.AppUnderDev}/build/zephyr/zephyr.elf",
+            "device": "nRF52840_xxAA",
+            "interface": "swd",
+            "armToolchainPath": "${config:workspaceFolder.armToolchainPath}",
+            "toolchainPrefix": "arm-zephyr-eabi",
+            "runToEntryPoint": "main",
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "decoders": [
+                    {
+                        "label": "shell",
+                        "port": 0,
+                        "type": "console"
+                    }
+                ]
+            },
+        },
+    ]
+}

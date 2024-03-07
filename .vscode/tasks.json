@@ -1,0 +1,106 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Build",
+			"type": "shell",
+			"group": "build",
+			"command": "west",
+			"args": [
+				"build",
+				"--pristine",
+				"auto",
+				"--build-dir",
+				"${config:app.build_dir}",
+				"--board",
+				"${config:bsp.board}",
+				"${config:app.name}",
+			],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "Full Build",
+			"type": "shell",
+			"group": "build",
+			"command": "west",
+			"args": [
+				"build",
+				"--pristine",
+				"always",
+				"--build-dir",
+				"${config:app.build_dir}",
+				"--board",
+				"${config:bsp.board}",
+				"${config:app.name}",
+			],
+			"dependsOn": [
+				"Clean Build"
+			],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "Clean Build",
+			"type": "shell",
+			"group": "build",
+			"windows": {
+				"command": "Remove-Item",
+				"args": [
+					"-Path",
+					"${config:app.build_dir}",
+					"-Force",
+					"-Recurse"
+				],
+			},
+			"linux": {
+				"command": "rm",
+				"args": [
+					"-rf",
+					"${config:app.build_dir}"
+				],
+			},
+			"dependsOn": [],
+			"problemMatcher": []
+		},
+		{
+			"label": "Debug Build",
+			"type": "shell",
+			"group": "build",
+			"command": "west",
+			"args": [
+				"build",
+				"--pristine",
+				"always",
+				"--build-dir",
+				"${config:app.build_dir}",
+				"--board",
+				"${config:bsp.board}",
+				"${config:app.name}",
+				"--",
+				"-DCONF_FILE='prj.conf;debug.conf'"
+			],
+			"dependsOn": [
+				"Clean Build"
+			],
+			"problemMatcher": [
+				"$gcc"
+			]
+		},
+		{
+			"label": "Flash",
+			"type": "shell",
+			"group": "build",
+			"command": "west",
+			"args": [
+				"flash",
+				"--build-dir",
+				"${config:app.build_dir}"
+			],
+			"dependsOn": [],
+			"problemMatcher": []
+		},
+	]
+}

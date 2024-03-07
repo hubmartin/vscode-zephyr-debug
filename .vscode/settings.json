@@ -1,0 +1,16 @@
+{
+    "workspaceFolder": {
+        "path": ".",
+        "armToolchainPath": "${userHome}/zephyr-sdk-0.16.4/arm-zephyr-eabi/bin",
+        "AppUnderDev": "${workspaceRoot}/vendor/application"
+    },
+    "bsp": {
+        "board": "chester_nrf52840",
+    },
+    "app": {
+        "name": "${config:workspaceFolder.AppUnderDev}",
+        "build_dir": "${config:workspaceFolder.AppUnderDev}/build", // Linux
+        //"build_dir": "${config:workspaceFolder.AppUnderDev}/build", // Windows
+    },
+    "C_Cpp.default.compileCommands": "${config:workspaceFolder.AppUnderDev}/build/compile_commands.json",
+}
