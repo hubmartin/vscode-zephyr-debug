@@ -8,8 +8,6 @@
 			"command": "west",
 			"args": [
 				"build",
-				"--pristine",
-				"auto",
 				"--build-dir",
 				"${config:app.build_dir}",
 				"--board",
